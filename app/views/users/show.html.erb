@@ -1,3 +1,8 @@
 <h1> Hello <%= @user.username %> </h1>
-<%= link_to "Create a Post", new_user_post_path(@user) %>
-<%= link_to "See Post", user_post_path(@user) %>
+<% if @user.posts %>
+    <% @user.posts.each do |post| %>
+        <%= link_to post.title, user_post_path(@user) %><br>
+    <% end %>
+<% end %>
+<br>
+<%= link_to "Create a Post", new_user_post_path(@user) %><br>
