@@ -1,7 +1,12 @@
-<% @post.each do |post| %>
-    <h1> <%= post.title %><br> </h1>
-    <p> <%= post.content %><br> </p>
-    <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %>
-    <hr>
+<% if !@post.empty? %>
+    <% @post.each do |post| %>
+        <h1> <%= post.title %><br> </h1>
+        <p> <%= post.content %><br> </p>
+        <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %>
+        <hr>
+    <% end %>
+<% else %>
+    <h1> There are no posts here... </h1>
 <% end %>
+
 <%= link_to "<<Back", root_path %>

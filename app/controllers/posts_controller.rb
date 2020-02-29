@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
-    before_action :find_post, only: [:show, :edit, :update, :destroy]
-    before_action :find_user, only: [:new, :create, :show, :edit, :update]
+    before_action :find_post, except: [:index, :new, :create]
+    before_action :find_user, except: [:index]
 
     def index 
         @post = Post.all
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post.destroy
-        redirect_to user_path
+        redirect_to user_path(@user)
     end
 
     private
