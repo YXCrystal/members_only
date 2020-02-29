@@ -1,7 +1,7 @@
 <h1> Hello <%= @user.username %> </h1>
 <% if @user.posts %>
     <% @user.posts.each do |post| %>
-        <%= link_to post.title, user_post_path(@user) %><br>
+        <%= link_to post.title, user_post_path(@user, post) %><br>
     <% end %>
 <% end %>
 <br>
