@@ -1,1 +1,3 @@
 <h1> Hello <%= @user.username %> </h1>
+<%= link_to "Create a Post", new_user_post_path(@user) %>
+<%= link_to "See Post", user_post_path(@user) %>
