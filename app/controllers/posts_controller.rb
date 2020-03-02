@@ -5,6 +5,9 @@ class PostsController < ApplicationController
 
     def index 
         @post = Post.all
+        @post.each do |post|
+            @author = User.where(id: post.user_id).first
+        end
     end
 
     def new 

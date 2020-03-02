@@ -3,6 +3,9 @@
         <h1> <%= post.title %><br> </h1>
         <p> <%= post.content %><br> </p>
         <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %>
+        <% if logged_in? %>
+            <p> - <%= @author.username %> </p>
+        <% end %>
         <hr>
     <% end %>
 <% else %>
