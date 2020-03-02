@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class User < ApplicationRecord    
     before_save { self.email = email.downcase }
 
     validates :username, presence: true, length: { maximum: 50 }
@@ -12,4 +12,19 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :posts
+
+    def User.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? Bcrypt::Engine::MIN_COST : Bcrypt::Engine.cost
+        Bcrypt::Password.create(string, cost: cost)
+
+    end
+
+    def User.new_token
+        SecureRandom.urlsafe_based64
+    end
+
+    def remember
+        self.remember_token = User.new_token
+        update_attributes(:remember_digest, User.digest(remember_token))
+    end
 end
