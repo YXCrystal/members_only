@@ -13,16 +13,19 @@ class User < ApplicationRecord
 
     has_many :posts
 
+    # Hashes any string
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? Bcrypt::Engine::MIN_COST : Bcrypt::Engine.cost
         Bcrypt::Password.create(string, cost: cost)
 
     end
 
+    # Returns a random token
     def User.new_token
         SecureRandom.urlsafe_based64
     end
 
+    # Update the remember_digest column with our generated remember_token
     def remember
         self.remember_token = User.new_token
         update_attributes(:remember_digest, User.digest(remember_token))
