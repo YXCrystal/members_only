@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :logged_in?, only: [:show]
+    before_action :logged_in_user, only: [:show]
 
     def index
         @user = User.all 
@@ -29,4 +29,6 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:username, :email, :password, :password_digest)
     end
+
+    
 end
