@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
     before_action :find_post, except: [:index, :new, :create]
     before_action :find_user, except: [:index]
-    before_action :logged_in_user, except: [:index]
 
     def index 
         @post = Post.all

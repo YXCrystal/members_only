@@ -1,5 +1,4 @@
 <h1> Welcome to Members Only! </h1>
-
 <%= link_to "See all Posts", posts_path %> <br>
 <% if logged_in? %>
     <%= link_to "Go to dashboard", user_path(session[:user_id]) %>
